@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 
@@ -49,23 +50,23 @@ def cdf_goodput_result(input_tuple_list, cdf):
 
 def print_result(results):
      # (0, 100KB)
-    small = filter(lambda x: x[0] < 100 * 1024, results)
+    small = list(filter(lambda x: x[0] < 100 * 1024, results))
     # (100KB, 10MB)
-    medium = filter(lambda x: 100 * 1024 <= x[0] < 10 * 1024 * 1024, results)
+    medium = list(filter(lambda x: 100 * 1024 <= x[0] < 10 * 1024 * 1024, results))
     # (10MB, infi)
-    large = filter(lambda x: x[0] >= 10 * 1024 * 1024, results)
+    large = list(filter(lambda x: x[0] >= 10 * 1024 * 1024, results))
 
-    print '%d flows/requests overall average completion time: %d us' % (len(results), average_fct_result(results))
-    print '%d flows/requests (0, 100KB) average completion time: %d us' % (len(small), average_fct_result(small))
-    print '%d flows/requests (0, 100KB) 99th percentile completion time: %d us' % (len(small), cdf_fct_result(small, 0.99))
-    print '%d flows/requests [100KB, 10MB) average completion time: %d us' % (len(medium), average_fct_result(medium))
-    print '%d flows/requests [10MB, ) average completion time: %d us' % (len(large), average_fct_result(large))
-    print '%d flows/requests overall average goodput: %d Mbps' % (len(results), average_goodput_result(results))
+    print('%d flows/requests overall average completion time: %d us' % (len(results), average_fct_result(results)))
+    print('%d flows/requests (0, 100KB) average completion time: %d us' % (len(small), average_fct_result(small)))
+    print('%d flows/requests (0, 100KB) 99th percentile completion time: %d us' % (len(small), cdf_fct_result(small, 0.99)))
+    print('%d flows/requests [100KB, 10MB) average completion time: %d us' % (len(medium), average_fct_result(medium)))
+    print('%d flows/requests [10MB, ) average completion time: %d us' % (len(large), average_fct_result(large)))
+    print('%d flows/requests overall average goodput: %d Mbps' % (len(results), average_goodput_result(results)))
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print 'Usages: %s <file1> [file2 ...]' % sys.argv[0]
+        print('Usages: %s <file1> [file2 ...]' % sys.argv[0])
         sys.exit()
 
     files = sys.argv[1:]
@@ -78,8 +79,8 @@ if __name__ == '__main__':
             num_file_parse = num_file_parse + 1
 
     if num_file_parse <= 1:
-        print "Parse %d file" % num_file_parse
+        print("Parse %d file" % num_file_parse)
     else:
-        print "Parse %d files" % num_file_parse
+        print("Parse %d files" % num_file_parse)
 
     print_result(final_results)

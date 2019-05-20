@@ -43,4 +43,6 @@ server: $(SERVER_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -rf $(BIN_DIR)/*
+	rm -rf $(BIN_DIR)
+	rm -rf $(RESULT_DIR)
+	rm -rf *.txt
