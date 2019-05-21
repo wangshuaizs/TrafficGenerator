@@ -1,9 +1,14 @@
-server 192.168.15.24 5001
+server 192.168.15.39 5001
+server 192.168.15.40 5001
+server 192.168.15.97 5001
+server 192.168.15.138 5001
+server 192.168.15.44 5001
+server 192.168.15.33 5001
 req_size_dist conf/DCTCP_CDF.txt
 rate 0Mbps 10
 rate 500Mbps 30
 rate 800Mbps 60
 dscp 0 25
-dscp 1 25
-dscp 2 25
-dscp 3 25
+dscp 8 25
+dscp 16 25
+dscp 24 25
